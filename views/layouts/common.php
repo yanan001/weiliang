@@ -186,10 +186,9 @@
                 <li class="sub-menu">
                     <a href="javascript:void(0);"><i class="fa fa-table"></i><span>自定义回复</span><i class="arrow fa fa-angle-right pull-right"></i></a>
                     <ul>
-                        <li><a href="">文字回复</a>
+                        <li><a href="?r=reply/list">文字回复</a>
                         </li>
-                        <li><a href="">图文回复</a>
-                        </li>
+
                         <li><a href="">添加规则</a>
                         </li>
                         <li><a href="">自动回复</a>

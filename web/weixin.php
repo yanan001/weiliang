@@ -3,17 +3,24 @@ header('content-type:text');
 /**
   * wechat php test
   */
-$echoStr = $_GET["echostr"];
 
-$dsn = "mysql:host=123.57.136.43;dbname=weiliang";
-$db = new PDO($dsn, 'root', ' root');
-$rs = $db->query("SELECT * FROM we_account");
-$result_arr = $rs->fetchAll();
-print_r($result_arr);die;
 //define your token
-define("TOKEN", "weixin110");
-define("APPID", " wx3b602e0a423d3723 ");
-define("APPSECRET", "d324a1529a7f0cd77f9b72fa3b309d38");
+$str=$_GET['echostr'];
+include_once("./sql/database.php");
+
+$rs = $pdo->query("SELECT * FROM wl_account where atok ='$str'");
+$result_arr = $rs->fetchAll(PDO::FETCH_ASSOC);
+//print_r($result_arr);die;
+
+foreach($result_arr as $val){
+    $token=$val['atoken'];
+    $appid=$val['appid'];
+    $appsecret=$val['appsecret'];
+    
+}
+define("TOKEN", "Ab8eba43551742214453411664a0dcc8");
+define("APPID", " $appid");
+define("APPSECRET", "$appsecret");
 $wechatObj = new wechatCallbackapiTest();
 $wechatObj->valid();
 
@@ -26,8 +33,8 @@ class wechatCallbackapiTest
       
         if($this->checkSignature()){
             echo $echoStr;
-            $this->createMenu();
             $this->responseMsg();
+			$this->createMenu();
         	exit;
         }
     }
@@ -114,7 +121,7 @@ class wechatCallbackapiTest
 							echo $resultStr;
 						}
 
-					 if($keyword=='你好')
+						if($keyword=='你好')
 							 {
 								 $msgType = "text";
 								 $contentStr = "你也好!";
@@ -198,7 +205,7 @@ class wechatCallbackapiTest
                  "button":[
                  {	
                       "type":"click",
-                      "name":"今日歌曲",
+                      "name":"今日舞曲",
                       "key":"V1001_TODAY_MUSIC"
                   },
                   {
@@ -206,7 +213,7 @@ class wechatCallbackapiTest
                        "sub_button":[
                        {	
                            "type":"view",
-                           "name":"搜索",
+                           "name":"搜搜",
                            "url":"http://www.soso.com/"
                         },
                         {
@@ -216,7 +223,7 @@ class wechatCallbackapiTest
                         },
                         {
                            "type":"click",
-                           "name":"赞一下我们",
+                           "name":"赞一下",
                            "key":"V1001_GOOD"
                         }]
                    }]
@@ -226,7 +233,7 @@ class wechatCallbackapiTest
        
     }
     
-public function curlPost($url,$data,$method){  
+	public function curlPost($url,$data,$method){  
         $ch = curl_init();   //1.初始化  
         curl_setopt($ch, CURLOPT_URL, $url); //2.请求地址  
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);//3.请求方式  
@@ -269,7 +276,7 @@ public function curlPost($url,$data,$method){
 		sort($tmpArr, SORT_STRING);
 		$tmpStr = implode( $tmpArr );
 		$tmpStr = sha1( $tmpStr );
-        //return true;
+        return true;
 		if( $tmpStr == $signature ){
 			return true;
 		}else{

@@ -15,7 +15,7 @@ include_once("./web/sql/database.php");
 
 $rs = $pdo->query("SELECT * FROM wl_account where atok ='$str'");
 $result_arr = $rs->fetchAll(PDO::FETCH_ASSOC);
-//print_r($result_arr);die;
+print_r($result_arr);die;
 foreach($result_arr as $val){
     $token=$val['atoken'];
     $tok=$val['atok'];
