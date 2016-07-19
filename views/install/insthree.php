@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">表前缀</label>
                             <div class="col-sm-4">
-                                <input class="form-control" type="text" name="db[prefix]" value="wl_" disabled="true"> <!--readonly="readonly"-->
+                                <input class="form-control" type="text" name="db[prefix]" value="wl_"> <!--readonly="readonly"-->
                             </div>
                         </div>
                     </div>

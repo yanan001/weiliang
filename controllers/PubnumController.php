@@ -49,7 +49,7 @@ class PubnumController extends Controller
         }
         else{
             $atok=$this->actionRands(5);
-            $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'we'))."web/weixin.php?echoStr=".$atok;
+            $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'web'))."web/weixin.php?echostr=".$atok;
             $session = \Yii::$app->session;
             $session->open();
             $connection=\Yii::$app->db;
