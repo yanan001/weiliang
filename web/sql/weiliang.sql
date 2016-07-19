@@ -1,4 +1,4 @@
-﻿/*
+/*
 Navicat MySQL Data Transfer
 
 Source Server         : localhost_3306
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-07-15 08:03:13
+Date: 2016-07-19 19:21:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,11 +33,12 @@ CREATE TABLE `account` (
   PRIMARY KEY (`aid`),
   KEY `FK_Relationship_4` (`uid`),
   KEY `FK_Relationship_5` (`mid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of wl_account
+-- Records of account
 -- ----------------------------
+
 
 -- ----------------------------
 -- Table structure for admin
@@ -48,11 +49,12 @@ CREATE TABLE `admin` (
   `name` varchar(30) DEFAULT NULL,
   `pwd` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+
 
 -- ----------------------------
 -- Table structure for ip
@@ -62,8 +64,41 @@ CREATE TABLE `ip` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ip
+-- ----------------------------
+
+
+-- ----------------------------
+-- Table structure for reply
+-- ----------------------------
+DROP TABLE IF EXISTS `reply`;
+CREATE TABLE `reply` (
+  `reid` int(11) NOT NULL AUTO_INCREMENT,
+  `aid` int(11) DEFAULT NULL,
+  `rename` varchar(50) DEFAULT NULL,
+  `rekeyword` varchar(50) DEFAULT NULL,
+  `retype` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`reid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for text_reply
+-- ----------------------------
+DROP TABLE IF EXISTS `text_reply`;
+CREATE TABLE `text_reply` (
+  `trid` int(11) NOT NULL AUTO_INCREMENT,
+  `reid` int(11) DEFAULT NULL,
+  `trcontent` varchar(255) NOT NULL,
+  PRIMARY KEY (`trid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of text_reply
 -- ----------------------------

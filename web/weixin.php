@@ -18,7 +18,8 @@ foreach($result_arr as $val){
     $appsecret=$val['appsecret'];
     
 }
-define("TOKEN", "Ab8eba43551742214453411664a0dcc8");
+define("ID","$id");
+define("TOKEN", "$token");
 define("APPID", " $appid");
 define("APPSECRET", "$appsecret");
 $wechatObj = new wechatCallbackapiTest();
@@ -120,11 +121,11 @@ class wechatCallbackapiTest
 							$resultStr = sprintf($musicTpl, $fromUsername, $toUsername, $time, $msgType, $title, $discripition, $music_url, $hight_qing);
 							echo $resultStr;
 						}
-
-						if($keyword=='你好')
+ $re=$pdo->query("select trcontent from wl_reply inner join wl_text_reply on wl_reply.reid = wl_text_reply.reid where rekeyword='$keyword' and aid= ".ID)->fetchAll();
+						if($re)
 							 {
 								 $msgType = "text";
-								 $contentStr = "你也好!";
+								 $contentStr = "$re[0]['trcontent']";
 								 $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 								 echo $resultStr;
 							 }
