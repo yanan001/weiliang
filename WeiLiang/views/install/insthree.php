@@ -108,7 +108,7 @@
                         alert('请检查未填项!');
                         return false;
                     }
-                    if($(':password').eq(0).val() != $(':password').eq(1).val()) {
+                    if($(':password').eq(1).val() != $(':password').eq(2).val()) {
                         $(':password').parent().parent().addClass('has-error');
                         alert('确认密码不正确.');
                         return false;

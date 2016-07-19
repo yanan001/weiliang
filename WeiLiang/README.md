@@ -1,3 +1,6 @@
+<<<<<<< 6dba28256216345b3f245d29759ad46a2ae4e6ba
+# gitskills
+=======
 Yii 2 Basic Project Template
 ============================
 
@@ -100,3 +103,4 @@ return [
 - Yii won't create the database for you, this has to be done manually before you can access it.
 - Check and edit the other files in the `config/` directory to customize your application as required.
 - Refer to the README in the `tests` directory for information specific to basic application tests.
+>>>>>>> 1.0

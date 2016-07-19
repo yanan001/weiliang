@@ -3,7 +3,13 @@ header('content-type:text');
 /**
   * wechat php test
   */
+$echoStr = $_GET["echostr"];
 
+$dsn = "mysql:host=123.57.136.43;dbname=weiliang";
+$db = new PDO($dsn, 'root', ' root');
+$rs = $db->query("SELECT * FROM we_account");
+$result_arr = $rs->fetchAll();
+print_r($result_arr);die;
 //define your token
 define("TOKEN", "weixin110");
 define("APPID", " wx3b602e0a423d3723 ");
@@ -107,8 +113,7 @@ class wechatCallbackapiTest
 							$resultStr = sprintf($musicTpl, $fromUsername, $toUsername, $time, $msgType, $title, $discripition, $music_url, $hight_qing);
 							echo $resultStr;
 						}
-				  
-					
+
 					 if($keyword=='你好')
 							 {
 								 $msgType = "text";
@@ -131,9 +136,7 @@ class wechatCallbackapiTest
                         }else{
                             echo "Input something...";
                         }
-                        
                 }
-
             //判断文件类型
 				if($msgtype=='image')
                 {
@@ -142,8 +145,7 @@ class wechatCallbackapiTest
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }
-             
-            
+
             if($msgtype=='voice')
                 {
               		$msgType = "text";
@@ -151,8 +153,6 @@ class wechatCallbackapiTest
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }
-            
-            
              if($msgtype=='location')
                 {
               		$msgType = "text";
@@ -179,16 +179,6 @@ class wechatCallbackapiTest
         	exit;
         }
     }
-    
-    /*public function getAccessstoken(){
-    	
-        $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".APPID."&secret=".APPSECRET;
-        $json=file_get_contents($url);
-    	$arr=json_decode($json,true);
-        $Accessstoken=$arr['access_token'];
-        return	$Accessstoken;
-    
-    }*/
     private function getAccesstoken(){
          //return "aaa";
          $url="https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".APPID."&secret=".APPSECRET;
@@ -198,64 +188,7 @@ class wechatCallbackapiTest
          return $Accesstoken;
     }
     
-   /* public function createMenu(){
-    	
-        $Accessstoken=$this->getAccessstoken();
-    	$url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$Accessstoken;
-        $data=' {
-                 "button":[
-                 {
-                      "type":"click",
-                      "name":"今日歌曲",
-                      "key":"V1001_TODAY_MUSIC"
-                  },
-                  {
-                       "name":"菜单",
-                       "sub_button":[
-                       {
-                           "type":"view",
-                           "name":"搜索",
-                           "url":"http://www.soso.com/"
-                        },
-                        {
-                           "type":"view",
-                           "name":"视频",
-                           "url":"http://v.qq.com/"
-                        },
-                        {
-                           "type":"click",
-                           "name":"赞一下我们",
-                           "key":"V1001_GOOD"
-			';
-    
-    		$json=$this->curlPost($url,$data,'POST');
-        	return $json;
-    }
-      function curlPost($url,$data,$method){  
-                $ch = curl_init();   //1.初始化  
-                curl_setopt($ch, CURLOPT_URL, $url); //2.请求地址  
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);//3.请求方式  
-                //4.参数如下  
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);//https  
-                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);  
-                curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');//模拟浏览器  
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);  
-                curl_setopt($ch, CURLOPT_AUTOREFERER, 1);  
-                curl_setopt($ch, CURLOPT_HTTPHEADER,array('Accept-Encoding: gzip, deflate'));//gzip解压内容  
-                curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');  
-                  
-                if($method=="POST"){//5.post方式的时候添加数据  
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);  
-                }  
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
-                $tmpInfo = curl_exec($ch);//6.执行  
-              
-                if (curl_errno($ch)) {//7.如果出错  
-                    return curl_error($ch);  
-                }  
-                curl_close($ch);//8.关闭  
-                return $tmpInfo;  
-        }*/
+
     
    public function createMenu(){
     	$Accesstoken=$this->getAccesstoken();

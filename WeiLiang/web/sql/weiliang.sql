@@ -19,7 +19,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for account
 -- ----------------------------
 DROP TABLE IF EXISTS `account`;
-CREATE TABLE `wl_account` (
+CREATE TABLE `account` (
   `aid` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(11) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `wl_account` (
 -- Table structure for admin
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `wl_admin` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   `pwd` varchar(32) DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE `wl_admin` (
 -- Table structure for ip
 -- ----------------------------
 DROP TABLE IF EXISTS `ip`;
-CREATE TABLE `wl_ip` (
+CREATE TABLE `ip` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)

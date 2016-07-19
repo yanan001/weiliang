@@ -49,7 +49,7 @@ class PubnumController extends Controller
         }
         else{
             $atok=$this->actionRands(5);
-            $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'we'))."/weixin.php?str=".$atok;
+            $url=substr('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],0,strpos('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'we'))."web/weixin.php?echoStr=".$atok;
             $session = \Yii::$app->session;
             $session->open();
             $connection=\Yii::$app->db;
@@ -57,6 +57,7 @@ class PubnumController extends Controller
             $arr['atoken']=md5(rand(1000,9999));
             $atoken= md5(rand(1000,9999));
             $reg="/^[a-zA-Z]$/";
+
             if(preg_match($reg,substr($atoken,0,1))){
                 $arr['atoken']=$atoken;
             }else{
@@ -142,17 +143,8 @@ class PubnumController extends Controller
         $account->aname = $arr['aname'];
         $account->atoken=$arr['atoken'];
         $account->save();
-
+        $this->redirect(array('/pubnum/list'));
     }
 
-    /*public function actionRands($length){
-        $str = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randString = '';
-        $len = strlen($str)-1;
-        for($i = 0;$i < $length;$i ++)
-        {
-            $num = mt_rand(0, $len); $randString .= $str[$num];
-        }
-        return $randString ;
-    }*/
+
 }

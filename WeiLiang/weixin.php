@@ -1,4 +1,6 @@
 <?php
+header("content-type:text/html;charset=utf-8");
+
 /**
  * wechat php test
  */
@@ -8,12 +10,12 @@
 
 {"access_token":"OwsqgwRBNxXYMDQaRbTanAAr3VDXZeG0OLTdSBhiKDeu1veRgzQXncD6PghmKKG9_4C76SaXGiHNE4t3KuABDE1mO-WazUujBuNga2i_X8i2HDzsV8IttWUw8pBptzCoSGVgAIAHVK","expires_in":7200}
 */
-$str=$_GET['str'];
-include_once("./web/assets/abc.php");
-$pdo ->query("set names utf8");
-$rs = $pdo->query("SELECT * FROM we_account where atok ='$str'");
-$result_arr = $rs->fetchAll();
-print_r($result_arr);die;
+$str=$_GET['echostr'];
+include_once("./web/sql/database.php");
+
+$rs = $pdo->query("SELECT * FROM wl_account where atok ='$str'");
+$result_arr = $rs->fetchAll(PDO::FETCH_ASSOC);
+//print_r($result_arr);die;
 foreach($result_arr as $val){
     $token=$val['atoken'];
     $tok=$val['atok'];

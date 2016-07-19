@@ -206,7 +206,7 @@ class InstallController extends Controller
         $db_pre=$data['db']['prefix'];
         $db_name=$data['db']['name'];       //要创建的数据库
         //创建数据库
-        $host = $db_host.":".$db_port;
+        $host = $db_host;
         $connection = @mysqli_connect("$host","$db_user","$db_pwd");
         if($connection){
             $sql = "CREATE DATABASE "."$db_name";
@@ -228,10 +228,8 @@ class InstallController extends Controller
 						'tablePrefix' => '".$db_pre."',   //加入前缀名称we_
 					];";
                     file_put_contents('../config/db.php',$str);
-                    $str1="<?php
-                    \$pdo=new PDO('mysql:host= $db_host;port=$db_port;dbname=$db_name','$db_user','$db_pwd',array(PDO::MYSQL_ATTR_INIT_COMMAND=>'set names utf8'));
-                  ?>";
-                    file_put_contents('./sql/heheda.php',$str1);
+                    $str1="<?php\$pdo=new PDO('mysql:host=$db_host;port=$db_port; dbname=$db_name','$db_user','$db_pwd');?>";
+                    file_put_contents('./sql/database.php',$str1);
 
                     //加表前缀
                     $tables = mysqli_query($connection,'SHOW TABLES');
